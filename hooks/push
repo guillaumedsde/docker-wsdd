@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=$(curl --silent "https://api.github.com/repos/christgau/wsdd/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+VERSION=$(curl --silent https://api.github.com/repos/christgau/wsdd/tags | grep -Po '"name": "\K.*?(?=")' | head -n 1)
 
 docker push "$IMAGE_NAME"
 docker push "$DOCKER_REPO:$VERSION"

@@ -2,7 +2,7 @@
 
 # $IMAGE_NAME var is injected into the build so the tag is correct.
 
-VERSION=$(curl --silent "https://api.github.com/repos/christgau/wsdd/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+VERSION=$(curl --silent https://api.github.com/repos/christgau/wsdd/tags | grep -Po '"name": "\K.*?(?=")' | head -n 1)
 
 echo "Build hook running"
 docker build --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
