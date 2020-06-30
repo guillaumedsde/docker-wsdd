@@ -1,8 +1,10 @@
 FROM alpine:latest as build
 
+ARG VERSION=master
+
 WORKDIR /
 
-RUN wget "https://raw.githubusercontent.com/christgau/wsdd/master/src/wsdd.py" -O /wsdd \
+RUN wget "https://github.com/christgau/wsdd/blob/${VERSION}/src/wsdd.py" -O /wsdd \
     && chmod 755 /wsdd
 
 FROM gcr.io/distroless/python3
